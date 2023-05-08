@@ -2,6 +2,8 @@ import React from 'react'
 import useForm from '../hooks/useForm'
 import validate from './utils/validate'
 import axios from "axios"
+import {useNavigate,Link} from 'react-router-dom'
+import Login from './Login'
 
 const Signup = () => {
   const url="http://localhost:5000"
@@ -12,11 +14,13 @@ const Signup = () => {
     axios.post(url,values)
     
     .then(res =>{
-      console.log(res.data,"hello")
+      console.log(res.data)
       
   })
     
   }
+
+ const navigate=useNavigate();
 
   return (
     <div className='form-content-right'>
@@ -64,10 +68,15 @@ const Signup = () => {
           /> 
           {errors.phoneNo && <p>{errors.phoneNo}</p>} 
         </div>
-        <button className='form-input-btn' type='submit' onClick={submit}>Sign up</button>
+        <button className='form-input-btn' type='submit'> Sign up</button>
+        
         <span className='form-input-login'>
-          Already have an account? <a href='#'>Login here</a>
+        
+        <div>
+          Already have an account?<div> <Link to='/login'> <h3>Login here</h3></Link></div>
+          </div>
         </span>
+        
       </form>
       
     </div>
